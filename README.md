@@ -1,6 +1,25 @@
 # 📘 ChatCat – UAccess Assistant  
 ---
 
+My personal contributions
+
+Backend development — Implemented Flask routing, session state logic, and domain‑specific flows (Admissions, Advising, PhD menu).
+
+Knowledge base integration — Designed and coded the 47‑line knowledge module and fallback logic.
+
+Error handling — Built the invalid‑input redirect system to keep conversations from breaking.
+
+UI and template fixes — Ensured conversation history rendered correctly and debugged template issues.
+
+Flow debugging — Tracked down issues with session variables, flow resets, and inconsistent responses.
+
+Agile participation — Completed sprint tasks, contributed to retrospectives, and helped refine team workflow.
+
+Teammates
+* Stephen Nderitu 
+* Enrique Zarate
+* Koby Butler
+
 ## 📌 Description
 
 ChatCat is an intelligent academic assistant built to support Software Engineering students at the University of Arizona.  
