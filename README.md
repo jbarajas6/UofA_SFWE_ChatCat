@@ -1,21 +1,21 @@
 # 📘 ChatCat – UAccess Assistant  
 ---
 
-My personal contributions
+# My personal contributions
 
-Backend development — Implemented Flask routing, session state logic, and domain‑specific flows (Admissions, Advising, PhD menu).
+- Backend development — Implemented Flask routing, session state logic, and domain‑specific flows (Admissions, Advising, PhD menu).
 
-Knowledge base integration — Designed and coded the 47‑line knowledge module and fallback logic.
+- Knowledge base integration — Designed and coded the 47‑line knowledge module and fallback logic.
 
-Error handling — Built the invalid‑input redirect system to keep conversations from breaking.
+- Error handling — Built the invalid‑input redirect system to keep conversations from breaking.
 
-UI and template fixes — Ensured conversation history rendered correctly and debugged template issues.
+- UI and template fixes — Ensured conversation history rendered correctly and debugged template issues.
 
-Flow debugging — Tracked down issues with session variables, flow resets, and inconsistent responses.
+- Flow debugging — Tracked down issues with session variables, flow resets, and inconsistent responses.
 
-Agile participation — Completed sprint tasks, contributed to retrospectives, and helped refine team workflow.
+- Agile participation — Completed sprint tasks, contributed to retrospectives, and helped refine team workflow.
 
-Teammates
+# Teammates
 * Stephen Nderitu 
 * Enrique Zarate
 * Koby Butler
