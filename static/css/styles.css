@@ -1,0 +1,371 @@
+:root {
+  --bg: #f3f4f6;
+  --panel: #ffffff;
+  --panel-soft: #f9fafb;
+
+  --navy: #001c48;
+  --red: #ab0520;
+  --muted: #6b7280;
+  --text: #111827;
+
+  --border-subtle: #e5e7eb;
+  --ring: rgba(0, 28, 72, 0.24);
+
+  --you: #ab0520;
+  --bot: #f3f4f6;
+  --bot-bubble-bg: #001c48; /* UA Navy */
+
+  --input-bg: #ffffff;
+}
+
+:root[data-theme="dark"] {
+  --bg: #020617;          
+  --panel: #020617;       
+  --panel-soft: #020617;  
+
+  --navy: #e5e7eb;      
+  --red: #f97373;
+  --muted: #9ca3af;
+  --text: #e5e7eb;
+
+  --border-subtle: #111827;
+  --input-bg: #020617;
+
+  --you: #ab0520;
+  --bot: #111827;
+  --bot-bubble-bg: #001c48; /* keep same navy so it stays consistent */
+  --link-color: #0A6ED3;  /* Celtic Blue */
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font: 16px/1.45 "Inter", system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+
+.ua-banner {
+  width: 100%;
+  background-color: #ab0520; 
+}
+
+.ua-banner img {
+  width: 100%;
+  height: 63px; 
+  object-fit: cover;
+  display: block;
+}
+
+
+.app-shell {
+  min-height: calc(100vh - 63px);
+  display: flex;
+  flex-direction: column;
+}
+
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: #ffffff;
+}
+
+.main-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.main-title span {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.theme-toggle {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--panel-soft);
+  cursor: pointer;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 12px;
+}
+
+.theme-toggle .icon {
+  font-size: 14px;
+}
+
+.main-inner {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.main-inner-inner {
+  width: 100%;
+  max-width: 980px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chat-panel {
+  flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  background: var(--panel);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  max-height: calc(100vh - 150px);
+}
+
+.scroll {
+  flex: 1 1 auto;
+  padding: 18px;
+  background: var(--panel);
+
+  overflow-y: auto; 
+  scroll-behavior: smooth;
+
+  max-height: calc(100vh - 260px);
+}
+
+
+.msg {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.msg.you {
+  justify-content: flex-end;
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  background: #e5e7eb;
+  color: var(--navy);
+  flex: 0 0 28px;
+}
+
+/*ChatGPT, Help me change the avatar for the CatChat Bot to a picture of Wilbur. 11/28/25 */
+/* Wilbur-specific avatar */
+.avatar-bot {
+  padding: 0;              /* ensure no inner padding */
+  background: transparent; /* let the image fill the circle */
+}
+
+/* Make Wilbur fill the circle cleanly */
+.avatar-bot img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover; /* crops nicely if not square */
+  display: block;
+}
+
+.msg.you .avatar {
+  background: var(--red);
+  color: #ffffff;
+}
+
+.bubble {
+  max-width: 75%;
+  border-radius: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bot);
+
+}
+
+.msg.bot .bubble {
+  background: var(--bot-bubble-bg);
+  color: white; /* important for contrast */
+  border-color: var(--bot-bubble-bg);
+}
+
+.msg.you .bubble {
+  background: linear-gradient(135deg, var(--you), #e11d48);
+  border-color: rgba(171, 5, 32, 0.7);
+  color: #ffffff;
+}
+
+.who {
+  font-size: 11px;
+  margin-bottom: 4px;
+  color: var(--muted);
+}
+
+.msg.you .who {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.content {
+  white-space: pre-line;
+  font-size: 14px;
+}
+
+.actions {
+  padding: 10px;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--panel-soft);
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--panel);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.input-row {
+  padding: 10px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  gap: 8px;
+  background: var(--panel-soft);
+}
+
+.input-row input[type="text"] {
+  flex: 1 1 auto;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--input-bg);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.input-row input[type="text"]::placeholder {
+  color: var(--muted);
+}
+
+.input-row input[type="text"]:focus {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px var(--ring);
+  outline: none;
+}
+
+.input-row button {
+  padding: 0 20px;
+  border-radius: 999px;
+  border: 1px solid var(--navy);
+  background: var(--navy);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .main-inner {
+    padding: 12px;
+  }
+}
+
+html[data-theme="dark"] body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+html[data-theme="dark"] .main-header {
+  background: #020617;
+  border-bottom-color: #111827;
+}
+
+html[data-theme="dark"] .main-title {
+  color: var(--muted);
+}
+
+html[data-theme="dark"] .main-title span {
+  color: var(--navy);
+}
+
+html[data-theme="dark"] .chat-panel {
+  background: #020617;
+  border-color: #111827;
+}
+
+html[data-theme="dark"] .scroll {
+  background: #020617;
+}
+
+html[data-theme="dark"] .actions,
+html[data-theme="dark"] .input-row {
+  background: #020617;
+  border-top-color: #111827;
+}
+
+html[data-theme="dark"] .actions button {
+  background: #020617;
+  border-color: #111827;
+  color: #e5e7eb;
+}
+
+html[data-theme="dark"] .input-row input[type="text"] {
+  background: #020617;
+  border-color: #111827;
+  color: #e5e7eb;
+}
+
+html[data-theme="dark"] .input-row input[type="text"]::placeholder {
+  color: #6b7280;
+}
+
+html[data-theme="dark"] .avatar {
+  background: #111827;
+  color: #e5e7eb;
+}
+
+html[data-theme="dark"] .msg.you .avatar {
+  background: var(--red);
+  color: #ffffff;
+}
+html[data-theme="dark"] .theme-toggle {
+  background: #111827;
+  border-color: #1f2937;
+  color: #e5e7eb;
+}
+
+html[data-theme="dark"] .theme-toggle .icon {
+  color: #facc15;
+}
+
+html[data-theme="dark"] .theme-toggle:hover {
+  background: #1e293b;
+}
+
+a {
+  color: #90D5FF !important;
+  text-decoration: underline;
+}
+
+a:hover {
+  opacity: 0.85;
+}

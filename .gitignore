@@ -1,0 +1,39 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ---- Virtual Environments ----
+venv/
+.venv/
+venv
+.venv
+env/
+**/venv/
+**/.venv/
+**/env/
+.env/
+flask_session/
+
+# ---- IDE (PyCharm / JetBrains) ----
+.idea/
+*.iml
+
+# ---- OS Files ----
+.DS_Store
+Thumbs.db
+
+# ---- Logs and misc ----
+*.log
+*.pot
+*.mo
+*.pid
+*.swp
+
+data/*.db
+data/*.pkl
+data/*.npy
+data/ua_index.faiss
+__pycache__/
+*.pyc

@@ -1,0 +1,8 @@
+flask
+flask-session
+markupsafe
+sentence-transformers
+scikit-learn
+faiss-cpu
+numpy
+joblib

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <title>ChatCat @ UAccess</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+
+  <body>
+    <!-- UA banner -->
+    <div class="ua-banner">
+      <img
+        src="{{ url_for('static', filename='img/ua_banner.png') }}"
+        alt="The University of Arizona"
+      />
+    </div>
+
+    <div class="app-shell">
+      <!-- Top app header -->
+      <header class="main-header">
+        <div class="main-title">
+          <span>ChatCat</span> · UAccess Assistant
+        </div>
+        <button id="themeToggle" class="theme-toggle" type="button">
+          <span class="icon">🌙</span>
+          <span class="label">Dark mode</span>
+        </button>
+      </header>
+
+      <!-- Main area -->
+      <div class="main-inner">
+        <div class="main-inner-inner">
+          <section class="chat-panel">
+            <div class="scroll" id="scroll">
+              {% for who, text in history %}
+              <div class="msg {{ 'you' if who == 'You' else 'bot' }}">
+                {% if who == 'You' %}
+                  <div class="bubble">
+                    <div class="who">{{ who }}</div>
+                    <div class="content">{{ text | e }}</div>
+                  </div>
+                  <div class="avatar">Y</div>
+                {% else %}
+                  <!-- <div class="avatar">A</div> -->
+                <!-- /*ChatGPT, Help me change the avatar for the CatChat Bot to a picture of Wilbur. 11/28/25 */ -->
+                <div class="avatar avatar-bot">
+                  <img
+                    src="{{ url_for('static', filename='img/wilbur.png') }}"
+                    alt="Wilbur Wildcat"
+                  />
+                </div>
+                <div class="bubble">
+                    <div class="who">{{ who }}</div>
+                    <div class="content">{{ text|pretty }}</div>
+                  </div>
+                {% endif %}
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="actions">
+              <form action="/" method="post">
+                <input type="hidden" name="message" value="reset" />
+                <button type="submit">Reset conversation</button>
+              </form>
+
+              <form id="fb-up" action="/feedback" method="post">
+                <input type="hidden" name="q" id="fbq" />
+                <input type="hidden" name="a" id="fba" />
+                <input type="hidden" name="r" value="up" />
+                <button type="submit">👍 Helpful</button>
+              </form>
+
+              <form id="fb-down" action="/feedback" method="post">
+                <input type="hidden" name="q" id="fbq2" />
+                <input type="hidden" name="a" id="fba2" />
+                <input type="hidden" name="r" value="down" />
+                <button type="submit">👎 Not helpful</button>
+              </form>
+            </div>
+
+            <form class="input-row" action="/" method="post">
+              <input
+                type="text"
+                name="message"
+                placeholder="Ask me something…"
+                autocomplete="off"
+              />
+              <button type="submit">Send</button>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const msgs = [...document.querySelectorAll(".msg")];
+      let lastQ = "", lastA = "";
+      for (let i = msgs.length - 1; i >= 0; i--) {
+        const who = msgs[i].querySelector(".who")?.textContent || "";
+        const text = msgs[i].querySelector(".content")?.innerText || "";
+        if (!lastA && who === "ChatCat") lastA = text;
+        if (lastA && who === "You") { lastQ = text; break; }
+      }
+      const fbq  = document.getElementById("fbq");
+      const fba  = document.getElementById("fba");
+      const fbq2 = document.getElementById("fbq2");
+      const fba2 = document.getElementById("fba2");
+      if (fbq)  fbq.value  = lastQ;
+      if (fba)  fba.value  = lastA;
+      if (fbq2) fbq2.value = lastQ;
+      if (fba2) fba2.value = lastA;
+
+      const sc = document.getElementById("scroll");
+      if (sc) sc.scrollTop = sc.scrollHeight;
+
+      (function () {
+        const root = document.documentElement;
+        const btn  = document.getElementById("themeToggle");
+        if (!btn) return;
+
+        const stored = localStorage.getItem("chatcat-theme");
+        if (stored === "dark" || stored === "light") {
+          root.setAttribute("data-theme", stored);
+        }
+
+        function syncLabel() {
+          const mode  = root.getAttribute("data-theme") || "light";
+          const icon  = btn.querySelector(".icon");
+          const label = btn.querySelector(".label");
+          if (mode === "dark") {
+            icon.textContent  = "☀";
+            label.textContent = "Light mode";
+          } else {
+            icon.textContent  = "🌙";
+            label.textContent = "Dark mode";
+          }
+        }
+
+        syncLabel();
+
+        btn.addEventListener("click", () => {
+          const current = root.getAttribute("data-theme") || "light";
+          const next    = current === "dark" ? "light" : "dark";
+          root.setAttribute("data-theme", next);
+          localStorage.setItem("chatcat-theme", next);
+          syncLabel();
+        });
+      })();
+    </script>
+  </body>
+</html>
